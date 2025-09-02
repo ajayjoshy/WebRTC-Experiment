@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCTV Streams Viewer - WebRTC</title>
+    <meta name="description" content="Web-based CCTV streams viewer using WebRTC technology">
+    <meta name="author" content="WebRTC Experiment">
+    
+    <link rel="stylesheet" href="https://www.webrtc-experiment.com/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>CCTV Streams Viewer</h1>
+        <p>
+            <a href="https://www.webrtc-experiment.com/">HOME</a>
+            <span> &copy; </span>
+            <a href="http://www.MuazKhan.com/" target="_blank">Muaz Khan</a>
+            .
+            <a href="http://twitter.com/WebRTCWeb" target="_blank" title="Twitter profile for WebRTC Experiments">@WebRTCWeb</a>
+            .
+            <a href="https://github.com/muaz-khan?tab=repositories" target="_blank" title="Github Profile">Github</a>
+        </p>
+    </header>
+
+    <div class="container">
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <div class="controls-section">
+                <h3>Stream Controls</h3>
+                <div class="control-group">
+                    <label for="grid-layout">Grid Layout:</label>
+                    <select id="grid-layout">
+                        <option value="2x2">2x2 (4 cameras)</option>
+                        <option value="3x3">3x3 (9 cameras)</option>
+                        <option value="4x4">4x4 (16 cameras)</option>
+                        <option value="1x1">Single View</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="stream-url">Add Stream URL:</label>
+                    <input type="text" id="stream-url" placeholder="Enter stream URL or room ID">
+                    <button id="add-stream" class="btn btn-primary">Add Stream</button>
+                </div>
+                
+                <div class="control-group">
+                    <button id="clear-all" class="btn btn-warning">Clear All Streams</button>
+                    <button id="fullscreen-toggle" class="btn btn-secondary">Toggle Fullscreen</button>
+                </div>
+            </div>
+
+            <!-- Stream Status -->
+            <div class="status-section">
+                <h3>Stream Status</h3>
+                <div id="stream-status" class="status-list">
+                    <div class="status-item">
+                        <span class="status-indicator">●</span>
+                        <span>Ready to add streams</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Grid -->
+        <div class="video-container">
+            <div id="video-grid" class="video-grid grid-2x2">
+                <!-- Video streams will be dynamically added here -->
+                <div class="video-slot" data-slot="0">
+                    <div class="placeholder">
+                        <div class="placeholder-content">
+                            <i class="camera-icon">📹</i>
+                            <p>Camera 1</p>
+                            <p class="placeholder-text">No stream connected</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-slot" data-slot="1">
+                    <div class="placeholder">
+                        <div class="placeholder-content">
+                            <i class="camera-icon">📹</i>
+                            <p>Camera 2</p>
+                            <p class="placeholder-text">No stream connected</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-slot" data-slot="2">
+                    <div class="placeholder">
+                        <div class="placeholder-content">
+                            <i class="camera-icon">📹</i>
+                            <p>Camera 3</p>
+                            <p class="placeholder-text">No stream connected</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-slot" data-slot="3">
+                    <div class="placeholder">
+                        <div class="placeholder-content">
+                            <i class="camera-icon">📹</i>
+                            <p>Camera 4</p>
+                            <p class="placeholder-text">No stream connected</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for fullscreen view -->
+    <div id="fullscreen-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="fullscreen-video-container"></div>
+        </div>
+    </div>
+
+    <!-- Include required WebRTC libraries -->
+    <script>
+        // Polyfill for WebRTC adapter if needed
+        window.adapter = window.adapter || {};
+    </script>
+    
+    <!-- Main application script -->
+    <script src="cctv-viewer.js"></script>
+</body>
+</html>
